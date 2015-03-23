@@ -4,7 +4,7 @@
 
 ## Overview
 
-This module ment to take care of vagrant installation and its plugins. It focuses on the latest vagrant versions
+This module ment to take care of vagrant installation, its plugins and boxes. It focuses on the latest vagrant versions
 and therefore might not work properly with older releases requiring special setup, but it is still possible to
 request a specific version.
 
@@ -14,8 +14,6 @@ It was inspiried by code from [mjanser](https://github.com/mjanser/puppet-vagran
 
 This module uses $::operatingsystem and $::architecture to determine what package to install.
 
-NOTE: Versions older than 1.4.0 are not supported by this module because the download URL was complexer then.
-
 Currently supports:
 * CentOS and Redhat (i386 and x86)
 * Ubuntu and Debian (i386 and x86)
@@ -24,17 +22,21 @@ Currently supports:
 
 ## Usage
 
+### vagrant
+
 Install latest version
 ```
 include vagrant
 ```
 
-Install 1.5.0
+Install 1.6.3
 ```
 class { 'vagrant':
-  version => '1.5.0'
+  version => '1.6.3'
 }
 ```
+
+### vagrant::plugin
 
 Install plugin
 ```
@@ -55,3 +57,16 @@ There are some more options which are the same as supported by the *vagrant plug
 - prerelease
 - source
 - entry_point
+
+### vagrant::box
+
+Add a vagrant box for the specified user.
+```
+vagrant::box { 'puppetlabs/centos-6.6-64-puppet':
+  user         => 'vagrant'
+}
+```
+
+## Limitations
+
+The user parameter is currently ignored on Windows systems (current user is assumed).

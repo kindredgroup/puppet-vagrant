@@ -1,0 +1,16 @@
+{
+  "name": "unibet-vagrant",
+  "version": "0.1.0",
+  "author": "Unibet",
+  "summary": "Puppet module to manage vagrant and its plugins installation",
+  "license": "Apache 2.0",
+  "source": "https://github.com/unibet/puppet-vagrant.git",
+  "project_page": "https://github.com/unibet/puppet-vagrant",
+  "issues_url": "https://github.com/unibet/puppet-vagrant/issues",
+  "dependencies": [
+    {
+      "name": "puppetlabs-stdlib",
+      "version_range": ">= 1.0.0"
+    }
+  ]
+}
