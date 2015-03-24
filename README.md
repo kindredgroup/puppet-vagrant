@@ -1,4 +1,4 @@
-# puppet-vagrant
+# unibet-vagrant
 
 [![Build Status](https://secure.travis-ci.org/unibet/puppet-vagrant.png)](http://travis-ci.org/unibet/puppet-vagrant)
 
@@ -63,7 +63,7 @@ There are some more options which are the same as supported by the *vagrant plug
 Add a vagrant box for the specified user.
 ```
 vagrant::box { 'puppetlabs/centos-6.6-64-puppet':
-  user         => 'vagrant'
+  user => 'vagrant'
 }
 ```
 

@@ -22,11 +22,6 @@ define vagrant::command (
   $timeout      = 0
 ) {
 
-  # Sanity check
-  if $only_if != undef and $unless != undef {
-    fail('Both only_if and unless can not be set!')
-  }
-
   include vagrant::params
 
   $exec_command = $::kernel ? {
