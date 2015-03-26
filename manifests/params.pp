@@ -23,15 +23,12 @@ class vagrant::params {
     }
   }
   $install_from_source = true
-  $provider = $::operatingsystem ? {
-    centos => rpm,
+  $provider = $::osfamily ? {
     redhat => rpm,
-    fedora => rpm,
     debian => dpkg,
-    ubuntu => dpkg,
-    linuxmint => dpkg,
     Darwin => pkgdmg,
-    windows => windows
+    windows => windows,
+    default => undef
   }
   $source = undef
 }

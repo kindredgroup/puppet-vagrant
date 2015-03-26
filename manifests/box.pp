@@ -68,15 +68,15 @@ define vagrant::box (
   }
   $option_insecure = $insecure ? {
     true => '',
-    default => " --insecure"
+    default => ' --insecure'
   }
   $option_force = $force ? {
     false => '',
-    default => " --force"
+    default => ' --force'
   }
   $option_clean = $clean ? {
     false => '',
-    default => " --clean"
+    default => ' --clean'
   }
   $add_options = "${option_provider}${option_version}${option_insecure}${option_force}${option_clean}"
   $remove_options = "${option_provider}${option_version}${option_force}"
@@ -106,6 +106,6 @@ define vagrant::box (
         command => "vagrant box update ${update_options}"
       }
     }
-    default: { fail("Unrecognized value for ensure: ${ensure}") }
+    default: { fail("Unsupported value for ensure: ${ensure}") }
   }
 }

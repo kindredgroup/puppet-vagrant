@@ -12,7 +12,7 @@ It was inspiried by code from [mjanser](https://github.com/mjanser/puppet-vagran
 
 ## Description
 
-This module uses $::operatingsystem and $::architecture to determine what package to install.
+This module uses $::osfamily and $::architecture to determine what package to install.
 
 Currently supports:
 * CentOS and Redhat (i386 and x86)
@@ -70,3 +70,5 @@ vagrant::box { 'puppetlabs/centos-6.6-64-puppet':
 ## Limitations
 
 The user parameter is currently ignored on Windows systems (current user is assumed).
+
+$::osfamily usage requires Facter 1.6.1 or later.

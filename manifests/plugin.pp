@@ -115,6 +115,6 @@ define vagrant::plugin (
         command => "vagrant plugin update ${plugin}"
       }
     }
-    default: { fail("Unrecognized value for ensure: ${ensure}") }
+    default: { fail("Unsupported value for ensure: ${ensure}") }
   }
 }

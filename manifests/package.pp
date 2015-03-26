@@ -58,13 +58,13 @@ define vagrant::package (
       $arch_suffix = 'i686'
     }
     default: {
-      fail("Unrecognized architecture: ${::architecture}")
+      fail("Unsupported architecture: ${::architecture}")
     }
   }
 
   # Finally determine download url
-  case $::operatingsystem {
-    centos, redhat, fedora: {
+  case $::osfamily {
+    redhat: {
       $vagrant_source = $source ? {
         undef   => "${base_url}/vagrant_${version}_${arch_suffix}.rpm",
         default => $source
@@ -76,7 +76,7 @@ define vagrant::package (
         default => $source
       }
     }
-    debian, ubuntu, linuxmint: {
+    debian: {
       $download_source = $source ? {
         undef   => "${base_url}/vagrant_${version}_${arch_suffix}.deb",
         default => $source
@@ -107,7 +107,7 @@ define vagrant::package (
       }
     }
     default: {
-      fail("Unrecognized operating system: ${::operatingsystem}")
+      fail("Unsupported OS family: ${::osfamily}")
     }
   }
 
