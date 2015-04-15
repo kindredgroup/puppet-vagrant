@@ -14,7 +14,7 @@ exclude_paths = [
 ]
 
 CLEAN.include('spec/fixtures/')
-CLOBBER.include('.tmp', '.librarian')
+CLOBBER.include('.tmp', '.librarian', 'Puppetfile.lock', 'spec/fixtures/modules')
 
 PuppetLint.configuration.log_format = "%{path}:%{linenumber}:%{check}:%{KIND}:%{message}"
 PuppetLint.configuration.send("disable_80chars")
