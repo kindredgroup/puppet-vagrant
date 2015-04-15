@@ -82,7 +82,9 @@ define vagrant::box (
   $remove_options = "${option_provider}${option_version}${option_force}"
   $update_options = "${option_provider}${option_box}"
 
-  vagrant::command { "vagrant-box-${box}":
+  $command_name = "${user}-vagrant-box-${box}"
+
+  vagrant::command { $command_name:
     user      => $user,
     path      => $path,
     timeout   => $timeout
@@ -90,19 +92,19 @@ define vagrant::box (
 
   case $ensure {
     present, added: {
-      Vagrant::Command["vagrant-box-${box}"] {
+      Vagrant::Command[$command_name] {
         unless => $check_cmd,
         command => "vagrant box add ${box} ${source} ${add_options}"
       }
     }
     absent, removed: {
-      Vagrant::Command["vagrant-box-${box}"] {
+      Vagrant::Command[$command_name] {
         only_if => $check_cmd,
         command => "vagrant box remove ${box} ${remove_options}"
       }
     }
     latest, updated: {
-      Vagrant::Command["vagrant-box-${box}"] {
+      Vagrant::Command[$command_name] {
         command => "vagrant box update ${update_options}"
       }
     }

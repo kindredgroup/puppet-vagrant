@@ -91,7 +91,9 @@ define vagrant::plugin (
   }
   $install_options = "${option_version}${option_prerelease}${option_source}${option_entry_point}"
 
-  vagrant::command { "vagrant-plugin-${plugin}":
+  $command_name = "${user}-vagrant-plugin-${plugin}"
+
+  vagrant::command { $command_name:
     user      => $user,
     path      => $path,
     timeout   => $timeout
@@ -99,19 +101,19 @@ define vagrant::plugin (
 
   case $ensure {
     present, installed: {
-      Vagrant::Command["vagrant-plugin-${plugin}"] {
+      Vagrant::Command[$command_name] {
         unless => $check_cmd,
         command => "vagrant plugin install ${plugin} ${install_options}"
       }
     }
     absent, uninstalled: {
-      Vagrant::Command["vagrant-plugin-${plugin}"] {
+      Vagrant::Command[$command_name] {
         only_if => $check_cmd,
         command => "vagrant plugin uninstall ${plugin}"
       }
     }
     latest, updated: {
-      Vagrant::Command["vagrant-plugin-${plugin}"] {
+      Vagrant::Command[$command_name] {
         command => "vagrant plugin update ${plugin}"
       }
     }
