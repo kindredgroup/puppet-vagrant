@@ -1,6 +1,8 @@
 # unibet-vagrant
 
 [![Build Status](https://secure.travis-ci.org/unibet/puppet-vagrant.png)](http://travis-ci.org/unibet/puppet-vagrant)
+[![Puppet Forge](https://img.shields.io/puppetforge/v/unibet/vagrant.svg)](https://forge.puppetlabs.com/unibet/vagrant)
+[![Puppet Forge](https://img.shields.io/puppetforge/f/unibet/vagrant.svg)](https://forge.puppetlabs.com/unibet/vagrant)
 
 ## Overview
 
