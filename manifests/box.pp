@@ -57,7 +57,7 @@ define vagrant::box (
   validate_bool($insecure)
   validate_bool($force)
 
-  $check_cmd = "${vagrant::params::vagrant} box list | ${vagrant::params::grep} \"^${plugin}\s*[(]${provider}\""
+  $check_cmd = "${vagrant::params::vagrant} box list | ${vagrant::params::grep} \"^${box}\s*[(]${provider}\""
 
   # Parse provided type arguments and construct command option string
   $option_box = " --box ${box}"
@@ -85,9 +85,9 @@ define vagrant::box (
   $command_name = "${user}-vagrant-box-${box}"
 
   vagrant::command { $command_name:
-    user      => $user,
-    path      => $path,
-    timeout   => $timeout
+    user    => $user,
+    path    => $path,
+    timeout => $timeout
   }
 
   case $ensure {

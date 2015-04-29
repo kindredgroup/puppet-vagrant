@@ -35,9 +35,9 @@ define vagrant::command (
   }
 
   exec { $title:
-    command   => $exec_command,
-    path      => $exec_path,
-    timeout   => $timeout
+    command => $exec_command,
+    path    => $exec_path,
+    timeout => $timeout
   }
 
   if $unless != undef {

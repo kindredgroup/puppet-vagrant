@@ -29,7 +29,7 @@ end
 
 task :spec_prep => :librarian_spec_prep
 task :validate => :syntax
-task :default => [:spec]
+task :default => [:spec, :lint]
 
 desc "Run integration tests"
 task :integration do

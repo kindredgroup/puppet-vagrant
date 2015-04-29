@@ -49,17 +49,17 @@ class vagrant (
 
   if $install_from_source {
     vagrant::package {"vagrant-${version}":
-      ensure    => $ensure,
-      version   => $version,
-      provider  => $provider,
-      path      => $path,
-      source    => $source
+      ensure   => $ensure,
+      version  => $version,
+      provider => $provider,
+      path     => $path,
+      source   => $source
     }
   } else {
     package {'vagrant':
-      ensure    => $ensure,
-      provider  => $provider,
-      version   => $version
+      ensure   => $ensure,
+      provider => $provider,
+      version  => $version
     }
   }
 }

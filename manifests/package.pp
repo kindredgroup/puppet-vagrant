@@ -112,8 +112,8 @@ define vagrant::package (
   }
 
   package { 'vagrant':
-    ensure   => $ensure,
-    source   => $vagrant_source
+    ensure => $ensure,
+    source => $vagrant_source
   }
 
   if $provider != undef {

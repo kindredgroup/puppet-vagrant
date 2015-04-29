@@ -94,9 +94,9 @@ define vagrant::plugin (
   $command_name = "${user}-vagrant-plugin-${plugin}"
 
   vagrant::command { $command_name:
-    user      => $user,
-    path      => $path,
-    timeout   => $timeout
+    user    => $user,
+    path    => $path,
+    timeout => $timeout
   }
 
   case $ensure {
