@@ -69,6 +69,15 @@ vagrant::box { 'puppetlabs/centos-6.6-64-puppet':
 }
 ```
 
+### vagrant::user
+
+Manage vagrant user, its authorized keys and sudo access
+```
+class{'vagrant::user':
+  sudo_ensure => absent
+}
+```
+
 ## Limitations
 
 The user parameter is currently ignored on Windows systems (current user is assumed).

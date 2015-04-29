@@ -7,8 +7,14 @@
 # [*ensure*]
 #   Ensurable
 #
-# [*sudo*]
-#   Boolean if true sudo access with no password will be allowed
+# [*user_name*]
+#   Vagrant user name
+#
+# [*group_name*]
+#   Vagrant group name
+#
+# [*sudo_ensure*]
+#   Ensurable for sudo access. It will follow the ensure parameter if it was set to absent
 #
 # === Examples
 #
@@ -73,6 +79,6 @@ class vagrant::user (
     ensure  => $real_sudo_ensure,
     owner   => 'root',
     group   => 'root',
-    content => 'vagrant ALL=(ALL) NOPASSWD: ALL',
+    content => "${user_name} ALL=(ALL) NOPASSWD: ALL",
   }
 }
