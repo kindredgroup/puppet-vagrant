@@ -1,6 +1,7 @@
 # == Class: vagrant::user
 #
-# Creates vagrant user and group with authorized insecure key and sudo access
+# Creates vagrant user and group with authorized insecure key and sudo access.
+# Only *nix systems are supported.
 #
 # === Parameters
 #
@@ -39,7 +40,7 @@ class vagrant::user (
     ensure     => $ensure,
     home       => $user_home,
     managehome => true,
-    password   => vagrant,
+    password   => '$1$ZFFPNB/o$t77BItx.7yFE.CODbOpb6/',
     comment    => 'Vagrant User',
     shell      => '/bin/bash',
     groups     => [$group_name, 'wheel'],

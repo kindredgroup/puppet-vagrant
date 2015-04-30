@@ -71,7 +71,7 @@ vagrant::box { 'puppetlabs/centos-6.6-64-puppet':
 
 ### vagrant::user
 
-Manage vagrant user, its authorized keys and sudo access
+Manage vagrant user, its authorized keys and sudo access. Please note that this class works only on *nix systems.
 ```
 class{'vagrant::user':
   sudo_ensure => absent
