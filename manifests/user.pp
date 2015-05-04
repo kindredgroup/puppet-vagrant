@@ -44,11 +44,11 @@ class vagrant::user (
     comment    => 'Vagrant User',
     shell      => '/bin/bash',
     groups     => [$group_name, 'wheel'],
-    require    => Group[$group_name],
   }
 
   group {$group_name:
-    ensure => $ensure
+    ensure => $ensure,
+    members => $user_name,
   }
 
   File {
