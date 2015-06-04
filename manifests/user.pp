@@ -81,6 +81,6 @@ class vagrant::user (
     ensure  => $real_sudo_ensure,
     owner   => 'root',
     group   => 'root',
-    content => "Defaults:${user_name} !requiretty\r\n${user_name} ALL=(ALL) NOPASSWD: ALL",
+    content => template("${module_name}/user/sudo.erb"),
   }
 }
