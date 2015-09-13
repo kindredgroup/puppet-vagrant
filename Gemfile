@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 puppetversion = ENV.key?('PUPPET_VERSION') ? "= #{ENV['PUPPET_VERSION']}" : '3.7.2'
 
 group :rspec, :kitchen do
-  gem 'librarian-puppet', '2.1.0'
+  gem 'librarian-puppet', '2.1.1'
   gem 'puppet', puppetversion
   gem 'rspec_junit_formatter'
   gem 'puppet-blacksmith'
@@ -19,7 +19,7 @@ group :rspec do
 end
 
 group :kitchen do
-  gem 'puppet_forge', '<= 1.0.2'
+  #gem 'puppet_forge', '<= 1.0.2'
   gem 'test-kitchen'
   gem 'kitchen-puppet'
   gem 'kitchen-docker'

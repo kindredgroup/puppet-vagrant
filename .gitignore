@@ -11,4 +11,4 @@ spec/fixtures/
 .kitchen.local.yml
 reports/
 pkg/
-
+vendor/

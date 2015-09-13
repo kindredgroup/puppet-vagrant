@@ -7,7 +7,11 @@ describe 'vagrant::user' do
     it { should contain_group('vagrant').with_ensure('present') }
     it { should contain_file('/home/vagrant/.ssh').with_ensure('directory') }
     it { should contain_file('/home/vagrant/.ssh/authorized_keys').with_owner('vagrant') }
-    it { should contain_file('/etc/sudoers.d/vagrant').with_owner('root') }
+    it { should contain_file('/etc/sudoers.d/vagrant').with({
+      'owner' => 'root',
+      'mode'  => '0440'
+      }) }
+    it { should contain_file('/home/vagrant/.ssh/authorized_keys').with_content(/^ssh-rsa AAAA/) }
   end
 
   context 'user_name => bogus_user, group_name => bogus_group' do
