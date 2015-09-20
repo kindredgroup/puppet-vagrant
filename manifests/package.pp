@@ -7,7 +7,7 @@
 
 define vagrant::package (
   $ensure               = latest,
-  $version              = get_latest_vagrant_version(),
+  $version              = undef,
   $source               = undef,
   $provider             = undef,
   $path                 = $::path
@@ -38,13 +38,19 @@ define vagrant::package (
     '1.3.5' => 'a40522f5fabccb9ddabad03d836e120ff5d14093'
   }
 
+  # avoid hitting www.vagrantup.com unless we want to know the version
+  $version_real = $version ? {
+    undef   => get_latest_vagrant_version(),
+    default => $version
+  }
+
   # Determine the base url (it depends on the version)
-  if versioncmp($version, '1.4.0') >= 0 {
+  if versioncmp($version_real, '1.4.0') >= 0 {
     $base_url = 'https://dl.bintray.com/mitchellh/vagrant'
     $darwin_prefix = 'vagrant_'
     $windows_prefix = 'vagrant_'
   } else {
-    $base_url = "http://files.vagrantup.com/packages/${old_versions[$version]}"
+    $base_url = "http://files.vagrantup.com/packages/${old_versions[$version_real]}"
     $darwin_prefix = 'Vagrant-'
     $windows_prefix = 'Vagrant_'
   }
@@ -66,22 +72,22 @@ define vagrant::package (
   case $::osfamily {
     redhat: {
       $vagrant_source = $source ? {
-        undef   => "${base_url}/vagrant_${version}_${arch_suffix}.rpm",
+        undef   => "${base_url}/vagrant_${version_real}_${arch_suffix}.rpm",
         default => $source
       }
     }
     Darwin: {
       $vagrant_source = $source ? {
-        undef   => "${base_url}/${darwin_prefix}${version}.dmg",
+        undef   => "${base_url}/${darwin_prefix}${version_real}.dmg",
         default => $source
       }
     }
     debian: {
       $download_source = $source ? {
-        undef   => "${base_url}/vagrant_${version}_${arch_suffix}.deb",
+        undef   => "${base_url}/vagrant_${version_real}_${arch_suffix}.deb",
         default => $source
       }
-      $vagrant_source = "${::ostempdir}/vagrant_${version}_${arch_suffix}.deb"
+      $vagrant_source = "${::ostempdir}/vagrant_${version_real}_${arch_suffix}.deb"
 
       exec { 'vagrant-download':
         command => "wget -O ${vagrant_source} ${download_source}",
@@ -93,10 +99,10 @@ define vagrant::package (
     }
     windows: {
       $download_source = $source ? {
-        undef   => "${base_url}/${windows_prefix}${version}.msi",
+        undef   => "${base_url}/${windows_prefix}${version_real}.msi",
         default => $source
       }
-      $vagrant_source = "${::ostempdir}\\${windows_prefix}${version}.msi"
+      $vagrant_source = "${::ostempdir}\\${windows_prefix}${version_real}.msi"
 
       exec { 'vagrant-download':
         command => "powershell.exe -ExecutionPolicy Unrestricted -Command \"(New-Object Net.WebClient).DownloadFile('${download_source}', '${vagrant_source}')\"",

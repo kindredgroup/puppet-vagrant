@@ -8,7 +8,7 @@
 class vagrant::params {
 
   $ensure = latest
-  $version = get_latest_vagrant_version()
+  $version = undef
 
   case $::kernel {
     windows: {
