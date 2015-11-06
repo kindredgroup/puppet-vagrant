@@ -37,6 +37,19 @@ class vagrant::user (
 
   $user_home = "/home/${user_name}"
 
+  case $ensure {
+    present: {
+      Group[$group_name] {
+        before => User[$user_name]
+      }
+    }
+    absent: {
+      User[$user_name] {
+        before => Group[$group_name]
+      }
+    }
+  }
+
   user {$user_name:
     ensure     => $ensure,
     home       => $user_home,
