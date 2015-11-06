@@ -30,11 +30,11 @@ platforms:
   - name: centos-6.6-64-puppet
     driver_plugin: vagrant
     driver_config:
-      box: puppetlabs/centos-6.6-64-puppet
+      box: puppetlabs/centos-6.6-64-nocm
   - name: ubuntu-14.04-64-puppet
     driver_plugin: vagrant
     driver_config:
-      box: puppetlabs/ubuntu-14.04-64-puppet
+      box: puppetlabs/ubuntu-14.04-64-nocm
 <% end %>
 
 suites:
