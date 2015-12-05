@@ -7,7 +7,10 @@
 
 class vagrant::params {
 
-  $ensure = latest
+  $ensure = $::osfamily ? {
+    darwin  => present,
+    default => latest
+  }
   $version = undef
 
   case $::kernel {
