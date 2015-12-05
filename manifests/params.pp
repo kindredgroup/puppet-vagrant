@@ -26,7 +26,7 @@ class vagrant::params {
   $provider = $::osfamily ? {
     redhat => rpm,
     debian => dpkg,
-    Darwin => pkgdmg,
+    darwin => pkgdmg,
     windows => windows,
     default => undef
   }

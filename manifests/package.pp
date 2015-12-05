@@ -76,7 +76,7 @@ define vagrant::package (
         default => $source
       }
     }
-    Darwin: {
+    darwin: {
       $vagrant_source = $source ? {
         undef   => "${base_url}/${darwin_prefix}${version_real}.dmg",
         default => $source
