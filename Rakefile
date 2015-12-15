@@ -16,8 +16,10 @@ exclude_paths = [
 CLEAN.include('spec/fixtures/')
 CLOBBER.include('.tmp', '.librarian', 'Puppetfile.lock', 'spec/fixtures/modules')
 
+PuppetLint.configuration.fail_on_warnings = true
 PuppetLint.configuration.log_format = "%{path}:%{linenumber}:%{check}:%{KIND}:%{message}"
 PuppetLint.configuration.send("disable_80chars")
+PuppetLint.configuration.send('disable_class_inherits_from_params_class')
 PuppetLint.configuration.send("disable_autoloader_layout")
 PuppetLint.configuration.send("disable_quoted_booleans")
 PuppetLint.configuration.ignore_paths = exclude_paths
