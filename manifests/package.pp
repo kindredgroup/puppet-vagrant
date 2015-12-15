@@ -57,10 +57,10 @@ define vagrant::package (
 
   # Set file suffix according to the architecture
   case $::architecture {
-    x86_64, amd64: {
+    'x86_64', 'amd64': {
       $arch_suffix = 'x86_64'
     }
-    i386: {
+    'i386': {
       $arch_suffix = 'i686'
     }
     default: {
@@ -70,19 +70,19 @@ define vagrant::package (
 
   # Finally determine download url
   case $::osfamily {
-    redhat: {
+    'redhat': {
       $vagrant_source = $source ? {
         undef   => "${base_url}/vagrant_${version_real}_${arch_suffix}.rpm",
         default => $source
       }
     }
-    darwin: {
+    'darwin': {
       $vagrant_source = $source ? {
         undef   => "${base_url}/${darwin_prefix}${version_real}.dmg",
         default => $source
       }
     }
-    debian: {
+    'debian': {
       $download_source = $source ? {
         undef   => "${base_url}/vagrant_${version_real}_${arch_suffix}.deb",
         default => $source
@@ -97,7 +97,7 @@ define vagrant::package (
         before  => Package['vagrant']
       }
     }
-    windows: {
+    'windows': {
       $download_source = $source ? {
         undef   => "${base_url}/${windows_prefix}${version_real}.msi",
         default => $source

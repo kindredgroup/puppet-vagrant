@@ -91,19 +91,19 @@ define vagrant::box (
   }
 
   case $ensure {
-    present, added: {
+    'present', 'added': {
       Vagrant::Command[$command_name] {
         unless => $check_cmd,
         command => "vagrant box add ${box} ${source} ${add_options}"
       }
     }
-    absent, removed: {
+    'absent', 'removed': {
       Vagrant::Command[$command_name] {
         only_if => $check_cmd,
         command => "vagrant box remove ${box} ${remove_options}"
       }
     }
-    latest, updated: {
+    'latest', 'updated': {
       Vagrant::Command[$command_name] {
         command => "vagrant box update ${update_options}"
       }

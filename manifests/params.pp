@@ -8,13 +8,13 @@
 class vagrant::params {
 
   $ensure = $::osfamily ? {
-    darwin  => present,
+    'darwin'  => present,
     default => latest
   }
   $version = undef
 
   case $::kernel {
-    windows: {
+    'windows': {
       $path = [ 'C:\Windows\System32\WindowsPowerShell\v1.0', 'C:\Windows\System32', 'C:\HashiCorp\Vagrant\bin' ]
       $vagrant = 'vagrant.exe'
       $grep    = 'findstr.exe /I'
@@ -27,10 +27,10 @@ class vagrant::params {
   }
   $install_from_source = true
   $provider = $::osfamily ? {
-    redhat => rpm,
-    debian => dpkg,
-    darwin => pkgdmg,
-    windows => windows,
+    'redhat' => rpm,
+    'debian' => dpkg,
+    'darwin' => pkgdmg,
+    'windows' => windows,
     default => undef
   }
   $source = undef

@@ -38,16 +38,17 @@ class vagrant::user (
   $user_home = "/home/${user_name}"
 
   case $ensure {
-    present: {
+    'present': {
       Group[$group_name] {
         before => User[$user_name]
       }
     }
-    absent: {
+    'absent': {
       User[$user_name] {
         before => Group[$group_name]
       }
     }
+    default: { fail('$ensure must be present or absent') }
   }
 
   user {$user_name:
@@ -61,7 +62,7 @@ class vagrant::user (
   }
 
   group {$group_name:
-    ensure => $ensure,
+    ensure  => $ensure,
     members => $user_name,
   }
 
@@ -72,7 +73,7 @@ class vagrant::user (
   }
 
   $dir_ensure = $ensure ? {
-    present => directory,
+    'present' => directory,
     default => absent
   }
 
@@ -92,7 +93,7 @@ class vagrant::user (
   }
 
   $real_sudo_ensure = $ensure ? {
-    absent  => absent,
+    'absent'  => absent,
     default => $sudo_ensure
   }
 
