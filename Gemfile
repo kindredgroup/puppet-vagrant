@@ -12,6 +12,7 @@ end
 group :rspec do
   gem 'puppetlabs_spec_helper', '>= 0.1.0'
   gem 'puppet-lint', '< 1.1.0'
+  gem 'puppet-lint-unquoted_string-check'
   gem 'facter', '>= 1.7.0'
   gem 'rspec-puppet', :git => 'https://github.com/rodjek/rspec-puppet.git'
   gem 'puppet-syntax'

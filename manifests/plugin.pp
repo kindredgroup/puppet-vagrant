@@ -100,19 +100,19 @@ define vagrant::plugin (
   }
 
   case $ensure {
-    present, installed: {
+    'present', 'installed': {
       Vagrant::Command[$command_name] {
         unless => $check_cmd,
         command => "vagrant plugin install ${plugin} ${install_options}"
       }
     }
-    absent, uninstalled: {
+    'absent', 'uninstalled': {
       Vagrant::Command[$command_name] {
         only_if => $check_cmd,
         command => "vagrant plugin uninstall ${plugin}"
       }
     }
-    latest, updated: {
+    'latest', 'updated': {
       Vagrant::Command[$command_name] {
         command => "vagrant plugin update ${plugin}"
       }
