@@ -1,6 +1,6 @@
 {
   "name": "unibet-vagrant",
-  "version": "0.1.0",
+  "version": "0.1.19",
   "author": "Unibet",
   "summary": "Puppet module to manage vagrant and its plugins installation",
   "license": "Apache-2.0",
