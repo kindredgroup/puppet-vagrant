@@ -46,7 +46,7 @@ define vagrant::package (
 
   # Determine the base url (it depends on the version)
   if versioncmp($version_real, '1.4.0') >= 0 {
-    $base_url = 'https://dl.bintray.com/mitchellh/vagrant'
+    $base_url = "https://releases.hashicorp.com/vagrant/${version_real}"
     $darwin_prefix = 'vagrant_'
     $windows_prefix = 'vagrant_'
   } else {
